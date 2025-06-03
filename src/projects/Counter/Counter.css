@@ -1,7 +1,11 @@
 .counter-container {
-  text-align: center;
-  margin-top: 80px;
-  font-family: 'Segoe UI', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 .counter-display {
@@ -75,8 +79,6 @@
 .dark {
   background-color: #121212;
   color: #f0f0f0;
-  min-height: 100vh;
-  padding-top: 40px;
 }
 
 .dark .btn {
