@@ -1,9 +1,19 @@
 import { useState } from 'react';
+import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import './Todo.css';
 
 function Todo() {
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState(() => {
+    const saved = localStorage.getItem('tasks');
+      return saved ? JSON.parse(saved) : [];
+  });
+  const [darkMode, setDarkMode] = useState(false);
   const [input, setInput] = useState('');
+  
+  useEffect(() => {
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+  }, [tasks]);
 
   const addTask = () => {
     if (input.trim() === '') return;
@@ -27,7 +37,12 @@ function Todo() {
   };
 
   return (
-    <div className="todo-container">
+    <div className={`todo-page ${darkMode ? 'dark' : ''}`}>
+      <div className="todo-container">
+      <button onClick={() => setDarkMode(!darkMode)} className="theme-toggle">
+        {darkMode ? '🌞 Light Mode' : '🌙 Dark Mode'}
+      </button>
+
       <h2>📝 To-Do List</h2>
       <div className="input-section">
         <input
@@ -52,7 +67,9 @@ function Todo() {
           </li>
         ))}
       </ul>
-    </div>
+      <div><Link to="/" className="back-link">← Back to Home</Link>
+</div>
+    </div></div>
   );
 }
 
