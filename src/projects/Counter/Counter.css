@@ -111,3 +111,22 @@
 .dark .back-link:hover {
   text-decoration: underline;
 }
+
+@media (max-width: 480px) {
+  .counter-container {
+    width: 90%;
+    margin: 40px auto;
+    padding: 20px;
+  }
+
+  .count-display {
+    font-size: 3rem;
+  }
+
+  .counter-buttons button {
+    width: 100%;
+    margin: 10px 0;
+    font-size: 1.1rem;
+    padding: 12px;
+  }
+}

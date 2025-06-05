@@ -1,137 +1,199 @@
-/* === Theme Variables === */
-:root {
-  --bg-page: #f9f9f9;
-  --bg-container: #ffffff;
-  --text-color: #222;
-  --task-bg: #f2f2f2;
-}
-
-.todo-page.dark {
-  --bg-page: #1e1e1e;
-  --bg-container: #2a2a2a;
-  --text-color: #f1f1f1;
-  --task-bg: #333;
-}
-
-/* === Page + Container === */
-body {
-  margin: 0;
-  padding: 0;
-}
-
+/* Todo.css */
 .todo-page {
   min-height: 100vh;
   background-color: var(--bg-page);
+  padding: 40px 20px;
   transition: background-color 0.3s ease;
-  padding: 20px;
 }
 
 .todo-container {
   max-width: 500px;
-  margin: 40px auto;
+  margin: 0 auto;
   padding: 20px;
-  border-radius: 8px;
   background-color: var(--bg-container);
   color: var(--text-color);
-  text-align: center;
-  font-family: 'Segoe UI', sans-serif;
-  transition: all 0.3s ease;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  transition: box-shadow 0.3s ease;
 }
 
-/* === Theme Toggle === */
+.todo-container:hover {
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+}
+
 .theme-toggle {
   float: right;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   padding: 6px 10px;
   border: none;
   border-radius: 6px;
   background-color: #555;
   color: white;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .theme-toggle:hover {
   background-color: #333;
 }
 
-/* === Input Section === */
+h2 {
+  margin-top: 0;
+  font-size: 1.8rem;
+  color: var(--text-color);
+}
+
 .input-section {
   display: flex;
   justify-content: center;
+  gap: 10px;
   margin-bottom: 20px;
+  flex-wrap: wrap;
 }
 
 .input-section input {
+  flex: 1;
+  min-width: 0;
   padding: 10px;
-  width: 60%;
   font-size: 1rem;
   border: 1px solid #ccc;
   border-radius: 6px;
+  transition: border-color 0.3s ease;
+}
+
+.input-section input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 5px var(--accent);
 }
 
 .input-section button {
   padding: 10px 15px;
-  margin-left: 10px;
-  background-color: #007bff;
+  background-color: var(--accent);
   color: white;
   border: none;
   border-radius: 6px;
   cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.2s ease;
+  user-select: none;
 }
 
 .input-section button:hover {
-  background-color: #0056b3;
+  background-color: var(--accent-hover);
+  box-shadow: 0 0 8px var(--accent-hover);
 }
 
-/* === Task List === */
+/* Task List */
 .task-list {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
 .task-list li {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px;
+  gap: 10px;
+  padding: 12px 15px;
   margin-bottom: 10px;
   background-color: var(--task-bg);
   color: var(--text-color);
   border-radius: 6px;
-  animation: fadeIn 0.3s ease;
+  word-break: break-word;
+  transition: background-color 0.3s ease, box-shadow 0.2s ease;
+  cursor: default;
+}
+
+.task-list li:hover {
+  background-color: var(--accent-hover);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.task-list li:hover .delete-btn {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .task-list input[type="checkbox"] {
-  margin-right: 10px;
+  margin-right: 8px;
+  cursor: pointer;
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
 }
 
+/* Task text */
 .task-list .completed span {
   text-decoration: line-through;
   color: #888;
 }
 
-/* === Back Link === */
+/* Delete Button */
+.delete-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-color);
+  font-size: 1.3rem;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transition: 
+    color 0.3s ease, 
+    opacity 0.3s ease, 
+    transform 0.2s ease,
+    box-shadow 0.3s ease;
+  padding: 6px;
+  user-select: none;
+  border-radius: 50%;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 0 transparent;
+}
+
+.task-list li:hover .delete-btn {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.delete-btn:hover {
+  color: #e55353;
+  background-color: rgba(229, 83, 83, 0.12);
+  box-shadow: 0 4px 8px rgba(229, 83, 83, 0.25);
+  transform: scale(1.1);
+}
+
+
 .back-link {
   display: block;
   margin-top: 30px;
   text-align: center;
-  color: #007bff;
+  color: var(--link-color);
   text-decoration: none;
   font-weight: bold;
+  transition: color 0.3s ease;
 }
 
 .back-link:hover {
   text-decoration: underline;
+  color: var(--link-hover);
 }
 
-/* === Animation === */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
+@media (max-width: 480px) {
+  .input-section {
+    flex-direction: column;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+
+  .input-section input,
+  .input-section button {
+    width: 100%;
+  }
+
+  .task-list li {
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
   }
 }

@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './Home';
 import Counter from './projects/Counter/Counter';
 import Todo from './projects/Todo/Todo';
+import './theme.css';
 import './App.css';
 import './Home.css'; 
 
