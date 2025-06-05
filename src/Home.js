@@ -8,6 +8,8 @@ function Home() {
       <p className="home-subtitle">Learn React by building fun things</p>
       <ul className="project-list">
         <li><Link className="project-link" to="/counter">🧮 Counter App</Link></li>
+        <li><Link to="/todo" className="project-link">📝 To-Do List</Link></li>
+
         {/* Add more project links here */}
       </ul>
     </div>

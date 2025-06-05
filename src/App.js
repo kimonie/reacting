@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './Home';
 import Counter from './projects/Counter/Counter';
+import Todo from './projects/Todo/Todo';
 import './App.css';
 import './Home.css'; 
 
@@ -10,6 +11,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/counter" element={<Counter />} />
+        <Route path="/todo" element={<Todo />} /> 
         {/* Add more routes here */}
       </Routes>
     </Router>
