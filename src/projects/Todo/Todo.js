@@ -14,13 +14,13 @@ function Todo() {
   });
 
   const [input, setInput] = useState('');
+  const [editingId, setEditingId] = useState(null);
+  const [editingText, setEditingText] = useState('');
 
-  // Persist tasks
   useEffect(() => {
     localStorage.setItem('tasks', JSON.stringify(tasks));
   }, [tasks]);
 
-  // Handle dark mode side effects (class toggle + persistence)
   useEffect(() => {
     document.body.classList.toggle('dark-mode', darkMode);
     localStorage.setItem('darkMode', JSON.stringify(darkMode));
@@ -29,7 +29,7 @@ function Todo() {
   const addTask = () => {
     if (input.trim() === '') return;
     const newTask = {
-      id: Date.now(),
+      id: `task-${Date.now()}`,
       text: input,
       completed: false,
     };
@@ -47,6 +47,25 @@ function Todo() {
     setTasks(tasks.filter(task => task.id !== id));
   };
 
+  const handleEdit = (task) => {
+    setEditingId(task.id);
+    setEditingText(task.text);
+  };
+
+  const handleSaveEdit = () => {
+    if (editingText.trim() === '') return;
+    setTasks(tasks.map(task =>
+      task.id === editingId ? { ...task, text: editingText } : task
+    ));
+    setEditingId(null);
+    setEditingText('');
+  };
+
+  const handleCancelEdit = () => {
+    setEditingId(null);
+    setEditingText('');
+  };
+
   return (
     <div className={`todo-page ${darkMode ? 'dark' : ''}`}>
       <div className="todo-container">
@@ -61,20 +80,58 @@ function Todo() {
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') addTask();
+            }}
             placeholder="Add a task..."
           />
           <button onClick={addTask}>Add</button>
         </div>
 
+
         <ul className="task-list">
-          {tasks.map(task => (
+          {tasks.map((task) => (
             <li key={task.id} className={task.completed ? 'completed' : ''}>
               <input
                 type="checkbox"
                 checked={task.completed}
                 onChange={() => toggleComplete(task.id)}
               />
-              <span>{task.text}</span>
+
+              {editingId === task.id ? (
+                <input
+                  type="text"
+                  value={editingText}
+                  onChange={(e) => setEditingText(e.target.value)}
+                  onBlur={handleSaveEdit}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') handleSaveEdit();
+                    if (e.key === 'Escape') handleCancelEdit();
+                  }}
+                  autoFocus
+                  className="edit-input"
+                />
+              ) : (
+                <div className="task-content">
+                  <span
+                    onClick={() => !task.completed && handleEdit(task)}
+                    className={`editable-text ${task.completed ? 'disabled' : ''}`}
+                    title={task.completed ? "Can't edit completed task" : "Click to edit"}
+                  >
+                    {task.text}
+                  </span>
+                  {!task.completed && (
+                    <button
+                      onClick={() => handleEdit(task)}
+                      className="edit-button"
+                      title="Edit"
+                    >
+                      ✏️
+                    </button>
+                  )}
+                </div>
+              )}
+
               <button className="delete-btn" onClick={() => deleteTask(task.id)}>❌</button>
             </li>
           ))}

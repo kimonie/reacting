@@ -94,16 +94,34 @@ h2 {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 10px;
-  padding: 12px 15px;
-  margin-bottom: 10px;
-  background-color: var(--task-bg);
-  color: var(--text-color);
-  border-radius: 6px;
-  word-break: break-word;
-  transition: background-color 0.3s ease, box-shadow 0.2s ease;
-  cursor: default;
+  gap: 0.5rem;
+  background: var(--task-bg, #fff);
+  padding: 0.75rem 1rem;
+  margin: 0.4rem 0;
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  transition: background 0.3s, transform 0.15s;
+  cursor: grab;
+  position: relative;
 }
+
+.task-list li:active {
+  cursor: grabbing;
+  transform: scale(0.98);
+}
+
+.task-list li .drag-handle {
+  font-size: 1rem;
+  cursor: grab;
+  margin-right: 8px;
+  color: #aaa;
+  user-select: none;
+}
+
+.task-list li:hover .drag-handle {
+  color: var(--accent-color, #555);
+}
+
 
 .task-list li:hover {
   background-color: var(--accent-hover);
@@ -121,6 +139,18 @@ h2 {
   flex-shrink: 0;
   width: 18px;
   height: 18px;
+}
+
+.drag-handle {
+  font-size: 1.2rem;
+  cursor: grab;
+  margin-right: 8px;
+  color: #aaa;
+  user-select: none;
+}
+
+.task-list li:hover .drag-handle {
+  color: var(--accent-color, #555);
 }
 
 /* Task text */
@@ -166,6 +196,7 @@ h2 {
 }
 
 
+
 .back-link {
   display: block;
   margin-top: 30px;
@@ -195,5 +226,88 @@ h2 {
     flex-wrap: wrap;
     align-items: center;
     gap: 8px;
+  }
+}
+
+.edit-input {
+  font-size: 1rem;
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.editable-text {
+  cursor: pointer;
+  flex: 1;
+  padding: 4px 6px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.editable-text:hover {
+  background-color: rgba(0, 123, 255, 0.1);
+}
+
+.task-content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+}
+
+.editable-text {
+  cursor: pointer;
+  flex: 1;
+  padding: 4px 6px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+  font-size: 1rem;
+}
+
+.editable-text:hover {
+  background-color: rgba(0, 123, 255, 0.1);
+}
+
+.editable-text.disabled {
+  cursor: not-allowed;
+  color: #aaa;
+  text-decoration: line-through;
+}
+
+.edit-input {
+  font-size: 1rem;
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 100%;
+  box-sizing: border-box;
+  animation: fadeIn 0.3s ease;
+}
+
+.edit-button {
+  background: none;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.edit-button:hover {
+  background-color: rgba(0, 123, 255, 0.15);
+}
+
+/* Optional animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
 }
