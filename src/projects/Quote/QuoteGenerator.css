@@ -1,0 +1,31 @@
+.quote-container {
+  text-align: center;
+  padding: 2rem;
+  max-width: 500px;
+  margin: auto;
+}
+
+.quote-box {
+  transition: opacity 0.3s ease;
+}
+
+.quote-box.fade {
+  opacity: 0;
+}
+
+.quote-text {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.quote-author {
+  font-style: italic;
+  color: #555;
+}
+
+button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  margin-top: 1rem;
+  cursor: pointer;
+}

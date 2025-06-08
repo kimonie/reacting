@@ -9,7 +9,7 @@ function Home() {
       <ul className="project-list">
         <li><Link className="project-link" to="/counter">🧮 Counter App</Link></li>
         <li><Link to="/todo" className="project-link">📝 To-Do List</Link></li>
-
+        <li><Link to="/quotes" className="project-link">💬 Quote Generator</Link></li>
         {/* Add more project links here */}
       </ul>
     </div>
