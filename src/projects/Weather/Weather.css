@@ -1,0 +1,180 @@
+/* Root container */
+.weather-page {
+  min-height: 100vh;
+  background-color: var(--bg-page);
+  color: var(--text-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  transition: background-color 0.3s ease;
+}
+
+/* Main card */
+.weather-box {
+  max-width: 420px;
+  width: 100%;
+  background-color: var(--bg-container);
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  transition: all 0.3s ease;
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+}
+
+.weather-page {
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+.weather-box {
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* Input and button row */
+.input-section {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.input-section input {
+  flex: 1;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  font-weight: 500;
+  background: var(--input-bg, #fff);
+  color: var(--text-color);
+  transition: background 0.3s ease;
+}
+
+.input-section button {
+  padding: 12px 18px;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.input-section button:hover {
+  background-color: #333;
+}
+
+/* Weather result */
+.weather-result {
+  margin-top: 30px;
+}
+
+.weather-result h3 {
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+}
+
+.weather-result p {
+  font-size: 1.1rem;
+  margin: 6px 0;
+}
+
+/* Weather icon */
+.weather-result img {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 10px;
+}
+
+/* Back to home */
+.back-link {
+  display: inline-block;
+  margin-top: 25px;
+  color: #007bff;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+
+/* Error message */
+.error {
+  color: crimson;
+  font-weight: bold;
+  margin-top: 15px;
+}
+
+/* Spinner centering (in Spinner.css already, but just in case) */
+.spinner {
+  margin: 30px auto;
+}
+
+/* RESPONSIVE */
+@media (max-width: 500px) {
+  .input-section {
+    flex-direction: column;
+  }
+
+  .input-section button {
+    width: 100%;
+  }
+
+  .weather-box {
+    padding: 30px 20px;
+  }
+}
+
+
+.weather-result {
+  animation: fadeInScale 0.4s ease;
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Default light mode styles */
+.weather-page {
+  background-color: #f9f9f9;
+  color: #222;
+}
+
+/* Dark mode styles */
+.weather-page.dark {
+  background-color: #121212;
+  color: #f0f0f0;
+}
+
+/* Weather Box Light */
+.weather-box {
+  background-color: #ffffff;
+  color: inherit;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+}
+
+/* Weather Box Dark */
+.weather-page.dark .weather-box {
+  background-color: #1e1e1e;
+  color: #f0f0f0;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+}
+
+.weather-page,
+.weather-box,
+input,
+button {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}

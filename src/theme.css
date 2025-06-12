@@ -1,4 +1,6 @@
 /* src/theme.css */
+
+/* Light mode variables */
 :root {
   --bg-page: #f9f9f9;
   --bg-container: #ffffff;
@@ -10,9 +12,10 @@
   --accent-hover: #0056b3;
 }
 
-body.dark-mode {
-  --bg-page: #1e1e1e;
-  --bg-container: #2a2a2a;
+/* Dark mode overrides */
+body.dark {
+  --bg-page: #121212;
+  --bg-container: #1e1e1e;
   --text-color: #f1f1f1;
   --task-bg: #333;
   --link-color: #66b2ff;
@@ -21,6 +24,7 @@ body.dark-mode {
   --accent-hover: #007acc;
 }
 
+/* Global styles */
 body {
   background-color: var(--bg-page);
   color: var(--text-color);
